@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "530490326629",
+    "project_id": "gogreen-f6233",
+    "storage_bucket": "gogreen-f6233.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530490326629:android:a971799c5ae5142af3108c",
+        "android_client_info": {
+          "package_name": "com.example.gogreen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530490326629-uooeinnt3sqh4bf18a6f3s916ejngqop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApvPY9SmOdzPdk9t0fBZnWDVnTAIsxFrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530490326629-uooeinnt3sqh4bf18a6f3s916ejngqop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/planta"
+    tools:context=".MainActivity"
+    tools:ignore="MissingClass">
+
+    <Button
+        android:id="@+id/btn_skip"
+        android:layout_width="117dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@android:color/transparent"
+        android:fontFamily="sans-serif-medium"
+        android:text="Skip"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/login_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:background="@drawable/img"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Welcome"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#446A22"
+            android:textSize="30sp" />
+
+        <!-- TextInputLayout with TextInputEditText as a child -->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinputlayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:hint="     Enter Phone Number"
+            android:textColorHint="#4C4A4A"
+            app:boxStrokeColor="@color/black"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:counterTextColor="@color/black"
+            app:endIconMode="clear_text"
+            app:endIconTint="#333131"
+            app:helperTextTextColor="#FF0000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ph"
+            app:startIconTint="#333131">
+
+            <!-- TextInputEditText inside the TextInputLayout -->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:maxLength="10"
+                android:textSize="18dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="sans-serif-medium"
+            android:text="Continue"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:layout_marginStart="40dp"
+                android:background="#999999" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="OR"
+                android:textColor="#666666"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="40dp"
+                android:background="#999999" />
+        </LinearLayout>
+
+        <!-- Continue with Google (Image + TextView) -->
+        <LinearLayout
+            android:id="@+id/google_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/rounded_white_background"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/googlelogo"
+                android:contentDescription="Google logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Continue with Google"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Terms & Privacy fixed at bottom center -->
+    <TextView
+        android:id="@+id/terms_privacy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="By continuing, you agree to our\nTerms &amp; Conditions and Privacy Policy"
+        android:textAlignment="center"
+        android:textColor="#666666"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
