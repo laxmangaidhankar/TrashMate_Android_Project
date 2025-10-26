@@ -1,121 +1,1073 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F7F9FC">
+    android:layout_height="match_parent">
 
-    <!-- ===== TOP BAR ===== -->
-    <LinearLayout
-        android:id="@+id/topBar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="16dp"
-        android:background="#2B5912">
+        android:layout_height="80dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <ImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_list"
-            android:contentDescription="Profile"
-            android:padding="8dp" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Your Waste Partner"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#2B5912"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            tools:ignore="DuplicateIds">
 
-    <!-- ===== SCROLLABLE CARDS ===== -->
-    <ScrollView
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="TrashMate"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/topBar"
-        android:padding="16dp"
-        android:paddingBottom="72dp">
+        android:layout_marginBottom="70dp"
+        android:background="#EAF8EA"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:padding="5dp"
+        android:paddingBottom="150dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
 
             <!-- Upcoming Requests Card -->
             <LinearLayout
-                android:id="@+id/cardUpcoming"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_card"
-                android:elevation="4dp"
+                android:layout_height="match_parent"
+                android:background="#EAF8EA"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- Collapsible Card -->
+                <RelativeLayout
+                    android:id="@+id/cardUpcoming"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Upcoming Requests"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_card"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/tvUpcomingRequests"
-                    android:layout_width="wrap_content"
+                    <!-- Text -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Schedule a Pickup"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Tap to expand form"
+                            android:textColor="#666"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <!-- Arrow Icon -->
+                    <ImageView
+                        android:id="@+id/arrowIconPickup"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:src="@drawable/greter"
+                        android:tint="@color/primary"
+                        tools:ignore="UseAppTint" />
+                </RelativeLayout>
+
+                <!-- Expandable Form Container -->
+                <LinearLayout
+                    android:id="@+id/layoutScheduleForm"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="No pickups scheduled"
-                    android:textColor="#666"
-                    android:textSize="14sp" />
+                    android:background="#D6EDD0"
+                    android:orientation="vertical"
+
+                    android:visibility="gone">
+
+                    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/tools"
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#D6EDD0"
+                        app:ignore="NamespaceTypo">
+
+                        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:id="@+id/topBar"
+                                android:layout_width="match_parent"
+                                android:layout_height="65dp"
+                                android:background="#E0F6DE"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                app:ignore="DuplicateIds"
+                                app:layout_scrollFlags="scroll|enterAlways">  <!-- key to hide on scroll -->
+                                <ImageView
+                                    android:id="@+id/ivMenu"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:padding="8dp"
+                                    android:src="@drawable/ic_back_arrow"
+                                    android:tint="@android:color/white"
+                                    app:ignore="UseAppTint" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ellipsize="end"
+                                    android:singleLine="true"
+                                    android:text="  Schedule Pickup"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <!-- Header -->
+                            <!-- SCROLLABLE CONTENT -->
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#D6EDD0"
+                                android:orientation="vertical"
+                                android:padding="16dp">
+                                <!-- Waste Type Card -->
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="#D6EDD0"
+                                    android:orientation="vertical"
+
+                                    >
+
+
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="16dp"
+                                        android:elevation="6dp"
+                                        card_view:cardCornerRadius="12dp">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:padding="16dp">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingBottom="12dp"
+                                                android:text="Pickup Location"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <!-- Modern Chip Selection -->
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="20dp"
+                                                android:gravity="center_vertical"
+                                                android:orientation="horizontal"
+                                                android:padding="16dp">
+
+                                                <!-- RadioButton -->
+                                                <RadioButton
+                                                    android:id="@+id/rb_address"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginEnd="16dp"
+                                                    android:checked="true"
+                                                    android:text="" />
+
+                                                <!-- Address Details -->
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="1"
+                                                    android:orientation="vertical">
+
+                                                    <!-- Address Type -->
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Home"
+                                                        android:textSize="16sp"
+                                                        android:textStyle="bold" />
+
+                                                    <!-- Full Address -->
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginTop="4dp"
+                                                        android:text="123 Green Street, Pune, Maharashtra - 411001"
+                                                        android:textColor="#666666"
+                                                        android:textSize="14sp" />
+
+                                                    <!-- Pickup Details -->
+                                                </LinearLayout>
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center_vertical"
+                                                android:orientation="horizontal"
+                                                android:padding="12dp">
+
+                                                <RadioButton
+                                                    android:id="@+id/rb_manual_address"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginEnd="12dp" />
+
+                                                <com.google.android.material.textfield.TextInputLayout
+                                                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="1"
+                                                    android:hint="Enter Pickup Address">
+
+                                                    <com.google.android.material.textfield.TextInputEditText
+                                                        android:id="@+id/et_manual_address"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:enabled="false"
+                                                        android:inputType="textPostalAddress"
+                                                        android:padding="12dp" />
+                                                </com.google.android.material.textfield.TextInputLayout>
+                                            </LinearLayout>
+                                        </LinearLayout>
+                                    </androidx.cardview.widget.CardView>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="#D6EDD0"
+                                        android:orientation="vertical">
+                                        <!-- Waste Type Card -->
+
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="16dp"
+                                            android:elevation="6dp"
+                                            card_view:cardCornerRadius="12dp">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:padding="16dp">
+
+                                                <!-- Waste Type Title -->
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:paddingBottom="12dp"
+                                                    android:text="Select Waste Type"
+                                                    android:textSize="18sp"
+                                                    android:textStyle="bold" />
+
+                                                <!-- General Waste -->
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:gravity="center_vertical"
+                                                    android:orientation="horizontal"
+                                                    android:paddingVertical="8dp">
+
+                                                    <RadioButton
+                                                        android:id="@+id/rb_general"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginEnd="12dp"
+                                                        android:checked="true"
+                                                        android:text="" />
+
+                                                    <LinearLayout
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight="1"
+                                                        android:orientation="vertical">
+
+                                                        <!-- Waste Title -->
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="General Waste (Dry)"
+                                                            android:textSize="16sp"
+                                                            android:textStyle="bold" />
+
+                                                        <!-- Description -->
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginTop="4dp"
+                                                            android:text="Regular household waste"
+                                                            android:textColor="#666666"
+                                                            android:textSize="14sp" />
+
+                                                        <!-- Row: Unit Price + Quantity -->
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginTop="6dp"
+                                                            android:orientation="horizontal">
+
+                                                            <!-- Unit Price -->
+
+                                                            <!-- Quantity Controls -->
+                                                            <LinearLayout
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:orientation="horizontal">
+
+                                                                <Button
+                                                                    android:id="@+id/btn_minus_general"
+                                                                    android:layout_width="36dp"
+                                                                    android:layout_height="36dp"
+                                                                    android:backgroundTint="#EEEEEE"
+                                                                    android:text="−"
+                                                                    android:textColor="#000"
+                                                                    android:textSize="20sp"
+                                                                    android:textStyle="bold" />
+
+                                                                <TextView
+                                                                    android:id="@+id/tv_quantity_general"
+                                                                    android:layout_width="40dp"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_marginHorizontal="8dp"
+                                                                    android:gravity="center"
+                                                                    android:text="1"
+                                                                    android:textSize="16sp"
+                                                                    android:textStyle="bold" />
+
+                                                                <Button
+                                                                    android:id="@+id/btn_plus_general"
+                                                                    android:layout_width="36dp"
+                                                                    android:layout_height="36dp"
+                                                                    android:backgroundTint="#EEEEEE"
+                                                                    android:text="+"
+                                                                    android:textColor="#000"
+                                                                    android:textSize="18sp" />
+                                                            </LinearLayout>
+                                                        </LinearLayout>
+
+                                                        <!-- Final Price -->
+                                                        <TextView
+                                                            android:id="@+id/tv_total_general"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginTop="4dp"
+                                                            android:text="Total: ₹19"
+                                                            android:textColor="#000000"
+                                                            android:textSize="14sp"
+                                                            android:textStyle="bold" />
+                                                    </LinearLayout>
+                                                </LinearLayout>
+
+
+                                                <!-- Recyclables -->
+
+
+                                                <!-- Divider -->
+                                                <View
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="1dp"
+                                                    android:layout_marginVertical="8dp"
+                                                    android:background="#DDDDDD" />
+
+                                                <!-- Organic Waste -->
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:gravity="center_vertical"
+                                                    android:orientation="horizontal"
+                                                    android:paddingVertical="8dp">
+
+                                                    <RadioButton
+                                                        android:id="@+id/rb_organic"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginEnd="12dp"
+                                                        android:text="" />
+
+                                                    <LinearLayout
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight="1"
+                                                        android:orientation="vertical">
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="Organic Waste (Wet)"
+                                                            android:textSize="16sp"
+                                                            android:textStyle="bold" />
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginTop="4dp"
+                                                            android:text="Food waste, garden waste"
+                                                            android:textColor="#666666"
+                                                            android:textSize="14sp" />
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginTop="4dp"
+                                                            android:text="Regular household waste"
+                                                            android:textColor="#666666"
+                                                            android:textSize="14sp" />
+
+                                                        <!-- Row: Unit Price + Quantity -->
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginTop="6dp"
+                                                            android:orientation="horizontal">
+
+                                                            <!-- Unit Price -->
+
+                                                            <!-- Quantity Controls -->
+                                                            <LinearLayout
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:orientation="horizontal">
+
+                                                                <Button
+                                                                    android:id="@+id/btn_minus3_general"
+                                                                    android:layout_width="36dp"
+                                                                    android:layout_height="36dp"
+                                                                    android:backgroundTint="#EEEEEE"
+                                                                    android:text="−"
+                                                                    android:textColor="#000"
+                                                                    android:textSize="20sp"
+                                                                    android:textStyle="bold" />
+
+                                                                <TextView
+                                                                    android:id="@+id/tv_quantity3_general"
+                                                                    android:layout_width="40dp"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_marginHorizontal="8dp"
+                                                                    android:gravity="center"
+                                                                    android:text="1"
+                                                                    android:textSize="16sp"
+                                                                    android:textStyle="bold" />
+
+                                                                <Button
+                                                                    android:id="@+id/btn_plus3_general"
+                                                                    android:layout_width="36dp"
+                                                                    android:layout_height="36dp"
+                                                                    android:backgroundTint="#EEEEEE"
+                                                                    android:text="+"
+                                                                    android:textColor="#000"
+                                                                    android:textSize="18sp" />
+                                                            </LinearLayout>
+                                                        </LinearLayout>
+
+                                                        <!-- Final Price -->
+                                                        <TextView
+                                                            android:id="@+id/tv_total3_general"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginTop="4dp"
+                                                            android:text="Total: ₹29"
+                                                            android:textColor="#000000"
+                                                            android:textSize="14sp"
+                                                            android:textStyle="bold" />
+                                                    </LinearLayout>
+                                                </LinearLayout>
+                                                <!-- Divider -->
+
+
+                                            </LinearLayout>
+
+                                        </androidx.cardview.widget.CardView>
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <!-- Collection Frequency Card -->
+
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:background="#D6EDD0"
+                                    android:elevation="6dp"
+                                    android:padding="16dp"
+                                    card_view:cardCornerRadius="12dp">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center_vertical"
+                                        android:orientation="vertical"
+                                        android:padding="16dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:paddingBottom="12dp"
+                                            android:text="Preferred Collection Date &amp; Time"
+                                            android:textSize="16sp"
+                                            android:textStyle="bold" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="8dp"
+                                            android:gravity="center_vertical"
+                                            android:orientation="horizontal"
+                                            android:padding="16dp"
+                                            android:weightSum="2">
+
+                                            <!-- Date Picker -->
+                                            <!-- Date Picker -->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginEnd="8dp"
+                                                android:layout_weight="1"
+                                                android:hint="Date">
+
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/et_date"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:drawableEnd="@drawable/ic_person"
+                                                    android:drawablePadding="8dp"
+                                                    android:focusable="false"
+                                                    android:inputType="none"
+                                                    android:padding="12dp" /> <!-- Default today -->
+                                            </com.google.android.material.textfield.TextInputLayout>
+
+                                            <!-- Time Picker -->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:hint="Time">
+
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/et_time"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:drawableEnd="@drawable/ic_list"
+                                                    android:drawablePadding="8dp"
+                                                    android:focusable="false"
+                                                    android:inputType="none"
+                                                    android:padding="12dp"></com.google.android.material.textfield.TextInputEditText>
+                                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+
+
+                                <!-- Additional Notes Card -->
+
+
+                                <!-- Price Summary Card -->
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="16dp"
+                                    android:backgroundTint="#FFFFFF"
+                                    android:padding="16dp"
+                                    app:cardCornerRadius="18dp"
+
+                                    app:cardElevation="8dp"
+                                    app:cardUseCompatPadding="true"
+                                    card_view:cardCornerRadius="12dp">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="20dp">
+
+                                        <!-- Title -->
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:letterSpacing="0.02"
+                                            android:paddingBottom="16dp"
+                                            android:text="Price Details"
+                                            android:textColor="#1E1E1E"
+                                            android:textSize="18sp"
+                                            android:textStyle="bold" />
+
+                                        <!-- Items -->
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:paddingVertical="6dp">
+
+                                            <TextView
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:text="Items Price"
+                                                android:textColor="#666666"
+                                                android:textSize="15sp" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="₹0"
+                                                android:textColor="#212121"
+                                                android:textSize="15sp" />
+                                        </LinearLayout>
+
+                                        <!-- Delivery -->
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:paddingVertical="6dp">
+
+                                            <TextView
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:text="Delivery Charges"
+                                                android:textColor="#666666"
+                                                android:textSize="15sp" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Free"
+                                                android:textColor="#4CAF50"
+                                                android:textSize="15sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+                                        <!-- Discount -->
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:paddingVertical="6dp">
+
+                                            <TextView
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:text="Discount"
+                                                android:textColor="#666666"
+                                                android:textSize="15sp" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="-₹0"
+                                                android:textColor="#E53935"
+                                                android:textSize="15sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+                                        <!-- Divider -->
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_marginVertical="12dp"
+                                            android:background="#E0E0E0" />
+
+                                        <!-- Total -->
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:paddingVertical="8dp">
+
+                                            <TextView
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:text="Total Amount"
+                                                android:textColor="#212121"
+                                                android:textSize="17sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/tv_total_price"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="₹0"
+                                                android:textColor="#2E7D32"
+                                                android:textSize="19sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btn_schedule_pickup"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="56dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:backgroundTint="#388E3C"
+                                    android:drawablePadding="8dp"
+                                    android:icon="@drawable/ic_bell"
+                                    android:iconTint="#FFFFFF"
+                                    android:text="Proceed to pay"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    app:cornerRadius="12dp"
+                                    app:rippleColor="#66FFFFFF" />
+
+                            </LinearLayout>
+                        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                    </ScrollView>
+                    <!-- 👇 Paste your full Schedule Pickup XML form here 👇 -->
+                    <!-- (The big ScrollView + CoordinatorLayout code you pasted earlier) -->
+
+                </LinearLayout>
+
             </LinearLayout>
 
-            <!-- Orders Card -->
-            <LinearLayout
-                android:id="@+id/cardOrders"
+
+            <!-- Quick Actions Grid -->
+            <GridLayout
+                android:id="@+id/grid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_card"
-                android:elevation="4dp"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:columnCount="2"
+                android:rowCount="2">
 
-                <ImageView
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/bg_card"
+                    android:elevation="3dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ik" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Nearby Waste Centers"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/subscriptionbtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/bg_card"
+                    android:clickable="true"
+                    android:elevation="3dp"
+
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ik" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Waste Education"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+
+            </GridLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:background="#F6FCFF"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/grid">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+
+                    android:padding="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/grid">
+
+                    <!-- Left Side: Text Section -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Need help with Your Waste Partner"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="Call us between 9 AM and 9 PM to help you and solve your problems"
+                            android:textColor="#666666"
+                            android:textSize="14sp" />
+
+                        <!-- Call Button -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/call_button_bg"
+                            android:gravity="center_vertical"
+
+                            android:onClick="callSupport"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="8dp"
+                                android:src="@drawable/call"
+                                android:tint="@android:color/white"
+                                tools:ignore="UseAppTint" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Call us"
+                                android:textColor="#FFFFFF"
+
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Right Side: Image Section -->
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/callingg" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/uuu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@id/wy">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:paddingBottom="10dp"
+                    android:text="What our customers have to say"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewFeedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:background="#E6F5E9"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@id/uuu">
+
+                <!-- Logo/Icon -->
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/waste" />
 
+                <!-- Title Text -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:text="Request A Pickup"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Because Clean Cities Begin With You \n TrashMate 🌍"
+                    android:textColor="#2E7D32"
+                    android:textSize="15sp" />
+
+                <!-- Social Media Icons -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/circle_bg_green"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="openFacebook"
+                        android:padding="10dp"
+                        android:src="@drawable/facebook" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/circle_bg_green"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="openTwitter"
+                        android:padding="10dp"
+                        android:src="@drawable/twitter" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/circle_bg_green"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="openInstagram"
+                        android:padding="10dp"
+                        android:src="@drawable/instagram" />
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
 
-    <!-- ===== BOTTOM NAVIGATION ===== -->
+    </androidx.core.widget.NestedScrollView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:background="@color/white"
-        app:menu="@menu/bottom_nav_menu"
+        android:elevation="8dp"
+        app:itemIconTint="@color/primary"
+        app:itemTextColor="@color/green_primary"
         app:labelVisibilityMode="labeled"
-        app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color" />
-</RelativeLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+

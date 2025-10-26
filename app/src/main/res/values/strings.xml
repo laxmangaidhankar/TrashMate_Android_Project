@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Go Green</string>
-    <string name="button_on_splashscreen">Get Started With LeafyCare</string>
+    <string name="app_name">TrashMate</string>
     <string name="default_web_client_id">530490326629-uooeinnt3sqh4bf18a6f3s916ejngqop.apps.googleusercontent.com</string>
 
 </resources>

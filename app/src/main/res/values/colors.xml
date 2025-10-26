@@ -2,19 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="splashBackground">#5FDB5F</color>
     <color name="green_primary">#2E7D32</color>
-    <color name="green_secondary">#66BB6A</color>
     <color name="primary">#254420</color>
-    <color name="primary_variant_light">#E8F5E9</color>
     <color name="primary_variant_dark">#205923</color>
-    <color name="glass_bg">#1AFFFFFF</color>
-    <color name="glass_stroke">#40FFFFFF</color>
-    <color name="ripple_light">#40FFFFFF</color>
 
+    <color name="blue">#004FE2</color>
 
-
-    <!-- chip background -->
-    <color name="chip_bg">#33FFFFFF</color>
 
 </resources>

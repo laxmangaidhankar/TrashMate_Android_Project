@@ -1,6 +1,5 @@
 package com.example.gogreen;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,14 +16,13 @@ public class OtpActivity extends AppCompatActivity {
     Button verifyButton;
     String mobileNumber;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_verification);
 
-        // Get mobile number from intent
-        mobileNumber = getIntent().getStringExtra("mobile");
+        // Get data from LoginActivity
+        mobileNumber = getIntent().getStringExtra("mobile"); // same key as passed in LoginActivity
 
         et1 = findViewById(R.id.otp_digit1);
         et2 = findViewById(R.id.otp_digit2);
@@ -37,24 +35,24 @@ public class OtpActivity extends AppCompatActivity {
         setupOtpInputs();
 
         verifyButton.setOnClickListener(v -> {
-            String otp = et1.getText().toString() +
-                    et2.getText().toString() +
-                    et3.getText().toString() +
-                    et4.getText().toString() +
-                    et5.getText().toString() +
-                    et6.getText().toString();
+            String otp = et1.getText().toString().trim() +
+                    et2.getText().toString().trim() +
+                    et3.getText().toString().trim() +
+                    et4.getText().toString().trim() +
+                    et5.getText().toString().trim() +
+                    et6.getText().toString().trim();
 
-            if (otp.length() == 6) {
-                // Normally verify with Firebase here
-                Toast.makeText(this, "OTP Entered: " + otp, Toast.LENGTH_SHORT).show();
-
-                // Proceed to next screen
-                Intent intent = new Intent(OtpActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(this, "Please enter all 6 digits", Toast.LENGTH_SHORT).show();
+            // Simple validation
+            if (otp.length() != 6) {
+                Toast.makeText(OtpActivity.this, "Enter a valid 6-digit OTP", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            // ✅ For now, just navigate to HomeActivity (no Firebase check)
+            Intent intent = new Intent(OtpActivity.this, HomeActivity.class);
+            intent.putExtra("mobile", mobileNumber);
+            startActivity(intent);
+            finish();
         });
     }
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Terms &amp; Conditions"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!-- Terms Text -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:lineSpacingExtra="4dp"
+            android:text="Welcome to our Waste Collection Service. Please read the following terms carefully:\n\n
+1. Waste collectors must handle waste responsibly and safely.\n
+2. Only approved waste bags with QR codes should be collected.\n
+3. Hazardous or restricted waste items are not permitted.\n
+4. Pickups must be completed as per assigned schedule.\n
+5. Collectors should respect the privacy of customers.\n
+6. Any violation may result in suspension of your account.\n\n
+By continuing, you agree to these Terms &amp; Conditions."
+            android:textColor="#444444"
+            android:textSize="16sp" />
+
+        <!-- Accept Checkbox -->
+        <CheckBox
+            android:id="@+id/checkboxAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="I have read and agree to the Terms &amp; Conditions"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <!-- Continue Button -->
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/primary"
+            android:padding="12dp"
+            android:text="Accept &amp; Continue"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>
